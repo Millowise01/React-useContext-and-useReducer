@@ -48,6 +48,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 // Custom hook: this is the only way components should read the theme
 // context. It does the "is this undefined" check once, here, instead
 // of making every component that uses the theme repeat that check.
+// The learning activity intentionally keeps the provider and hook together.
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {

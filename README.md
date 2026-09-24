@@ -1,75 +1,66 @@
-# React + TypeScript + Vite
+# React Theme Switcher and Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a guided React learning activity demonstrating:
 
-Currently, two official plugins are available:
+- `useContext` for global light/dark theme state.
+- `useReducer` for adding and removing tasks.
+- TypeScript with React and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requirements
 
-## React Compiler
+- Node.js and npm
+- React
+- TypeScript
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run Locally
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open `http://localhost:5173/` in a browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The project also includes these validation commands:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build
+npm run lint
 ```
+
+## Project Structure
+
+```text
+src/
+  App.tsx                         App shell and ThemeProvider wiring
+  main.tsx                        React entry point
+  constants/theme.ts              Light and dark theme constants
+  context/ThemeContext.tsx        ThemeProvider and useTheme hook
+  components/Navbar.tsx           Theme toggle navigation
+  components/Navbar.module.css    Navbar styles
+  components/TaskManager.tsx      Task input, list, and remove actions
+  components/TaskManager.module.css
+                                  Task manager theme styles
+  reducers/taskReducer.ts         Add and remove task state transitions
+```
+
+## How It Works
+
+`ThemeProvider` wraps the application in `App.tsx`. `Navbar` calls `useTheme()` to
+toggle the shared theme, while `TaskManager` reads the same theme to update its
+appearance.
+
+`TaskManager` stores its task list with `useReducer`. Adding a task dispatches an
+`add` action, and removing a task dispatches a `remove` action. Empty or
+whitespace-only tasks cannot be added.
+
+## Color Palette
+
+| Theme | Background | Text | Button |
+| --- | --- | --- | --- |
+| Light | `#FFFFFF` | `#000000` | `#1E90FF` |
+| Dark | `#242629` | `#FFFFFF` | `#85D1B0` |
+
+The palette is applied in the active CSS files and is controlled by the theme
+context rather than the operating system color preference.
