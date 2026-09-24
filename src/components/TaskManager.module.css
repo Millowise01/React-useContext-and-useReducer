@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  /* Smooth color change when the theme toggles, rather than an
+     instant jump. */
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Colors pulled from the light/dark palette in the README. */
+.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark {
+  background-color: #242629;
+  color: #ffffff;
+}
+
+button {
+  margin: 10px;
+}
