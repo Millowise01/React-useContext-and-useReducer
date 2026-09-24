@@ -1,0 +1,26 @@
+/* CSS Modules scope these class names to just this component,
+   so .navbar here can't clash with a .navbar defined elsewhere. */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1E90FF; /* Button color from the light theme palette */
+  color: white;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.toggleButton {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #1E90FF;
+}
